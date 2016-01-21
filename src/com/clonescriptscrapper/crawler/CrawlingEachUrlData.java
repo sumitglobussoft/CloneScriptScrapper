@@ -46,6 +46,7 @@ public class CrawlingEachUrlData implements Callable<String> {
         String addedon = "";
         String pagerank = "";
         String descriptions = "";
+        String demoUrl = "";
 //        String url = "http://www.clonescriptdirectory.com/freelancer-clone-script/";
         String response = "";
         response = new GetRequestHandler().doGetRequest(new URL(url));
@@ -103,11 +104,18 @@ public class CrawlingEachUrlData implements Callable<String> {
             try {
                 Element eleDescription = detailsDoc.select("td[class=center-column] div[class=box]").get(1);
                 String des = eleDescription.text();
-                String[] splitDescp = des.split("10");
+                String[] splitDescp = des.split("/10");
                 String description = splitDescp[1];
                 String[] splitDescp1 = description.split("Fields");
                 descriptions = splitDescp1[0];
                 System.out.println("Description : " + descriptions);
+            } catch (Exception e) {
+            }
+            
+            try {
+                Element eleDemo = detailsDoc.select("div[class=box-content-fixed] table tbody tr").first();
+                demoUrl = eleDemo.text().replace("Demo URL:", "").replace("Download Url:", "");
+                System.out.println("Demo Url : " + demoUrl);
             } catch (Exception e) {
             }
             
@@ -118,6 +126,7 @@ public class CrawlingEachUrlData implements Callable<String> {
             objCategoriesData.setAddedOn(addedon);
             objCategoriesData.setPageRank(pagerank);
             objCategoriesData.setDescription(descriptions);
+            objCategoriesData.setDemoUrl(demoUrl);
             
             objCloneScriptDirectoryDaoImpl.insertCategoriesCrawledData(objCategoriesData);
             

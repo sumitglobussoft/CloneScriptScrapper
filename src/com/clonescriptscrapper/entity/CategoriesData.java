@@ -45,6 +45,8 @@ public class CategoriesData implements Serializable {
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "CATEGORY_ID")
     @ManyToOne(optional = false)
     private Categories categoryId;
+    @Column(name = "DEMO_URL")
+    private String demoUrl;
 
     public CategoriesData() {
     }
@@ -115,6 +117,14 @@ public class CategoriesData implements Serializable {
 
     public void setCategoryId(Categories categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getDemoUrl() {
+        return demoUrl;
+    }
+
+    public void setDemoUrl(String demoUrl) {
+        this.demoUrl = demoUrl;
     }
 
 }

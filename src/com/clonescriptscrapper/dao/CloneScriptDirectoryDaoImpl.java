@@ -56,9 +56,9 @@ public class CloneScriptDirectoryDaoImpl implements CloneScriptDirectoryDao {
     @Override
     public void insertCategoriesCrawledData(CategoriesData objCategoriesData) {
 
-        String SQL = "insert into categories_data (CATEGORY_ID, TITLE, NAME, CLICKS, ADDED_ON, PAGE_RANK, DESCRIPTION) values (?,?, ?, ?, ? ,?,?)";
+        String SQL = "insert into categories_data (CATEGORY_ID, TITLE, NAME, CLICKS, ADDED_ON, PAGE_RANK, DESCRIPTION, DEMO_URL) values (?,?,?, ?, ?, ? ,?,?)";
         try {
-            jdbcTemplateObject.update(SQL, objCategoriesData.getCategoryId().getCategoryId(), objCategoriesData.getTitle(), objCategoriesData.getName(), objCategoriesData.getClicks(), objCategoriesData.getAddedOn(), objCategoriesData.getPageRank(), objCategoriesData.getDescription());
+            jdbcTemplateObject.update(SQL, objCategoriesData.getCategoryId().getCategoryId(), objCategoriesData.getTitle(), objCategoriesData.getName(), objCategoriesData.getClicks(), objCategoriesData.getAddedOn(), objCategoriesData.getPageRank(), objCategoriesData.getDescription(), objCategoriesData.getDemoUrl());
             System.out.println("categories_data Table Data inserted");
         } catch (Exception e) {
         }
